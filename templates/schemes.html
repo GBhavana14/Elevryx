@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government Schemes | BSVDA</title>
+
+<style>
+:root {
+    --bg-clean:#fdfdfd;
+    --primary-blue:#0369A1;
+    --accent-orange:#ff9933;
+    --text-main:#263238;
+    --text-subtle:#607d8b;
+    --footer-bg:#e0f2f1;
+}
+
+body{
+    margin:0;
+    font-family:Poppins,Arial,sans-serif;
+    background:var(--bg-clean);
+    color:var(--text-main);
+}
+
+/* NAVBAR */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 8%;
+    background:#fff;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+.logo-wrapper{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.bsvda-logo-svg{height:55px;}
+.logo-text-group{display:flex;flex-direction:column;}
+.brand-name{font-size:1.5rem;font-weight:800;color:var(--primary-blue);}
+.brand-sub{font-size:0.75rem;color:var(--accent-orange);font-weight:600;}
+.nav-links{list-style:none;display:flex;gap:25px;align-items:center;margin:0;}
+.nav-links a{text-decoration:none;font-weight:600;color:var(--text-main);}
+.nav-links a:hover{color:var(--primary-blue);}
+.login-link{padding:8px 18px;border:2px solid var(--primary-blue);border-radius:22px;color:var(--primary-blue);}
+.login-link:hover{background:#e0f2fe;}
+.ai-match-btn{background:linear-gradient(135deg,#0369A1,#0288d1);color:white!important;padding:10px 22px;border-radius:30px;}
+
+/* HERO */
+.hero{padding:80px 8px 40px; text-align:center;}
+.hero h1{font-size:2.8rem;margin-bottom:15px;line-height:1.15;}
+.hero span{color:var(--primary-blue);}
+.hero p{color:var(--text-subtle);font-size:1.05rem;line-height:1.5; max-width:700px; margin:auto;}
+.btn{padding:12px 28px;border-radius:6px;font-weight:600;text-decoration:none;}
+.btn-blue{background:var(--primary-blue);color:white;}
+.btn-outline{border:2px solid var(--primary-blue);color:var(--primary-blue);}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,0.12);}
+
+/* Schemes Cards Grid - 2 per row */
+.schemes-cards{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+    padding:50px 8%;
+}
+.card{
+    background:white;
+    border-radius:16px;
+    padding:25px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.12);
+    transition:0.3s;
+    cursor:pointer;
+}
+.card:hover{transform:translateY(-5px);box-shadow:0 12px 28px rgba(0,0,0,0.2);}
+.card h3{margin-bottom:10px;}
+.card .sector{font-weight:600;color:#455a64;margin-bottom:10px;}
+.card .details{font-size:0.95rem;color:#455a64;margin-bottom:8px;}
+.card .btn{display:inline-block;padding:8px 20px;background:var(--primary-blue);color:white;border-radius:6px;font-weight:600;cursor:pointer;}
+
+/* Modal */
+.modal{
+    display:none;
+    position:fixed;
+    z-index:10000;
+    left:0;top:0;
+    width:100%;height:100%;
+    overflow:auto;
+    background:rgba(0,0,0,0.6);
+}
+.modal-content{
+    background:#fff;
+    margin:10% auto;
+    padding:30px;
+    border-radius:12px;
+    max-width:700px;
+    position:relative;
+}
+.close{
+    position:absolute;
+    top:15px;
+    right:20px;
+    font-size:28px;
+    font-weight:bold;
+    color:#555;
+    cursor:pointer;
+}
+.close:hover{color:#000;}
+
+/* Footer */
+footer{
+    background:var(--footer-bg);
+    padding:100px 8% 60px;
+}
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:40px;
+}
+.footer-col h4{color:var(--primary-blue);margin-bottom:15px;}
+.footer-col ul{list-style:none;padding:0;margin:0;}
+.footer-col li{margin-bottom:10px;font-size:0.95rem;color:#455a64;}
+.copyright{text-align:center;margin-top:50px;padding-top:20px;border-top:1px solid rgba(0,0,0,0.1);color:#607d8b;font-size:0.85rem;}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+<a href="/" class="logo-wrapper">
+<svg class="bsvda-logo-svg" viewBox="0 0 200 200">
+<circle cx="100" cy="100" r="90" fill="#f0faff"/>
+<circle cx="100" cy="100" r="80" fill="none" stroke="#0369A1" stroke-width="2"/>
+<path d="M100 40 L125 110 L100 95 L75 110 Z" fill="#0369A1"/>
+<path d="M100 95 L120 140 L100 130 L80 140 Z" fill="#FF9933"/>
+</svg>
+<div class="logo-text-group">
+<div class="brand-name">BSVDA</div>
+<div class="brand-sub">Startup India Portal</div>
+</div>
+</a>
+
+<ul class="nav-links">
+<li><a href="/">Home</a></li>
+<li><a href="/entrepreneurs">Entrepreneurs</a></li>
+<li><a href="/funding">Funding</a></li>
+<li><a href="/schemes">Schemes</a></li>
+<li><a href="/learning">Learning</a></li>
+<li><a href="/login" class="login-link">Login</a></li>
+<li><a href="/ai-match" class="ai-match-btn">+ AI Match</a></li>
+</ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<h1>Explore <span>Government Schemes</span></h1>
+<p>Discover detailed information on various startup schemes across India. Click "Learn More" to see eligibility, benefits, and application details for each scheme.</p>
+</section>
+
+<!-- Schemes Cards -->
+<section>
+<div class="schemes-cards">
+{% for scheme in schemes_list[:6] %}
+<div class="card">
+    <h3>{{ scheme.title }}</h3>
+    <p class="sector"><strong>Sector:</strong> {{ scheme.sector }}</p>
+    <p class="details">{{ scheme.description }}</p>
+    <p class="details"><strong>Key Benefits:</strong> {{ scheme.get('benefits', 'Funding, mentorship, networking, incubation') }}</p>
+    <p class="details"><strong>Eligibility:</strong> {{ scheme.get('eligibility', 'Startups across India') }}</p>
+    <p class="details"><strong>Status:</strong> {{ scheme.get('status', 'Ongoing') }}</p>
+    <span class="btn" onclick="openModal('{{ loop.index }}')">Learn More</span>
+</div>
+
+<!-- Modal -->
+<div id="modal-{{ loop.index }}" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('{{ loop.index }}')">&times;</span>
+        <h2>{{ scheme.title }}</h2>
+        <p><strong>Sector:</strong> {{ scheme.sector }}</p>
+        <p><strong>Description:</strong> {{ scheme.description }}</p>
+        <p><strong>Eligibility:</strong> {{ scheme.get('eligibility','All startups in India') }}</p>
+        <p><strong>Benefits:</strong> {{ scheme.get('benefits','Funding, mentorship, networking, incubation') }}</p>
+        <p><strong>How to Apply:</strong> {{ scheme.get('apply','Submit via official portal') }}</p>
+        <p><strong>Notes:</strong> Schemes are updated periodically to maximize startup impact.</p>
+    </div>
+</div>
+{% endfor %}
+</div>
+</section>
+
+<!-- Footer -->
+<footer>
+<div class="footer-grid">
+<div class="footer-col">
+<h4>BSVDA</h4>
+<p>Academic Startup India initiative supporting innovation and entrepreneurship.</p>
+</div>
+<div class="footer-col">
+<h4>Services</h4>
+<ul>
+<li>Startup Mentorship</li>
+<li>Funding Support</li>
+<li>AI Matchmaking</li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Resources</h4>
+<ul>
+<li>Startup India</li>
+<li>Incubators</li>
+<li>Learning Modules</li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Contact</h4>
+<ul>
+<li>support@bsvda.in</li>
+<li>New Delhi</li>
+</ul>
+</div>
+</div>
+
+<div class="copyright">
+© 2026 Startup India Portal – BSVDA
+</div>
+</footer>
+
+<!-- Modal JS -->
+<script>
+function openModal(id){
+    document.getElementById('modal-'+id).style.display='block';
+}
+function closeModal(id){
+    document.getElementById('modal-'+id).style.display='none';
+}
+// Close on outside click
+window.onclick = function(event){
+    if(event.target.classList.contains('modal')){
+        event.target.style.display='none';
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}BSVDA Portal{% endblock %}</title>
+
+<style>
+:root {
+    --bg-clean:#fdfdfd;
+    --primary-blue:#0369A1;
+    --accent-orange:#ff9933;
+    --text-main:#263238;
+    --text-subtle:#607d8b;
+    --footer-bg:#e0f2f1;
+}
+
+body{
+margin:0;
+font-family:Poppins,Arial,sans-serif;
+background:var(--bg-clean);
+color:var(--text-main);
+}
+
+/* NAVBAR */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 8%;
+background:#fff;
+box-shadow:0 2px 10px rgba(0,0,0,0.05);
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo-wrapper{
+display:flex;
+align-items:center;
+gap:12px;
+text-decoration:none;
+}
+
+.bsvda-logo-svg{
+height:55px
+}
+
+.logo-text-group{
+display:flex;
+flex-direction:column
+}
+
+.brand-name{
+font-size:1.5rem;
+font-weight:800;
+color:var(--primary-blue)
+}
+
+.brand-sub{
+font-size:0.75rem;
+color:var(--accent-orange);
+font-weight:600
+}
+
+/* NAV LINKS */
+
+.nav-links{
+list-style:none;
+display:flex;
+gap:25px;
+align-items:center;
+margin:0
+}
+
+.nav-links a{
+text-decoration:none;
+font-weight:600;
+color:var(--text-main)
+}
+
+.nav-links a:hover{
+color:var(--primary-blue)
+}
+
+/* LOGIN BUTTON */
+
+.login-link{
+padding:8px 18px;
+border:2px solid var(--primary-blue);
+border-radius:22px;
+color:var(--primary-blue)
+}
+
+.login-link:hover{
+background:#e0f2fe
+}
+
+/* USER BADGE */
+
+.user-badge{
+background:#e0f2fe;
+padding:8px 14px;
+border-radius:20px;
+font-weight:600;
+color:var(--primary-blue);
+}
+
+/* FOOTER */
+
+footer{
+background:var(--footer-bg);
+padding:80px 8% 40px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:2fr 1fr 1fr 1fr;
+gap:40px;
+}
+
+.footer-col h4{
+color:var(--primary-blue);
+margin-bottom:15px;
+}
+
+.footer-col ul{
+list-style:none;
+padding:0;
+margin:0
+}
+
+.footer-col li{
+margin-bottom:10px;
+font-size:0.95rem;
+color:#455a64;
+}
+
+.copyright{
+text-align:center;
+margin-top:50px;
+padding-top:20px;
+border-top:1px solid rgba(0,0,0,0.1);
+color:var(--text-subtle);
+font-size:0.85rem;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+.nav-links{
+gap:15px;
+flex-wrap:wrap;
+}
+
+.footer-grid{
+grid-template-columns:1fr 1fr;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+
+<a href="{{ url_for('index') }}" class="logo-wrapper">
+
+<svg class="bsvda-logo-svg" viewBox="0 0 200 200">
+<circle cx="100" cy="100" r="90" fill="#f0faff"/>
+<circle cx="100" cy="100" r="80" fill="none" stroke="#0369A1" stroke-width="2"/>
+<path d="M100 40 L125 110 L100 95 L75 110 Z" fill="#0369A1"/>
+<path d="M100 95 L120 140 L100 130 L80 140 Z" fill="#FF9933"/>
+</svg>
+
+<div class="logo-text-group">
+<div class="brand-name">BSVDA</div>
+<div class="brand-sub">Startup India Portal</div>
+</div>
+
+</a>
+
+<ul class="nav-links">
+
+<li><a href="{{ url_for('index') }}">Home</a></li>
+<li><a href="{{ url_for('entrepreneurs') }}">Entrepreneurs</a></li>
+<li><a href="{{ url_for('funding') }}">Funding</a></li>
+<li><a href="{{ url_for('schemes') }}">Schemes</a></li>
+<li><a href="{{ url_for('learning') }}">Learning</a></li>
+
+{% if session.get('user') %}
+
+<li class="user-badge">
+👤 Welcome {{ session.get('user') }}
+</li>
+
+<li>
+<a href="{{ url_for('logout') }}" class="login-link">Logout</a>
+</li>
+
+{% else %}
+
+<li>
+<a href="{{ url_for('login') }}" class="login-link">Login</a>
+</li>
+
+<li>
+<a href="{{ url_for('register') }}" class="login-link">Register</a>
+</li>
+
+{% endif %}
+
+</ul>
+</nav>
+
+<!-- PAGE CONTENT -->
+<main>
+{% block content %}{% endblock %}
+</main>
+
+<!-- FOOTER -->
+<footer>
+
+<div class="footer-grid">
+
+<div class="footer-col">
+<h4>BSVDA</h4>
+<p>Academic Startup India initiative supporting innovation and entrepreneurship.</p>
+</div>
+
+<div class="footer-col">
+<h4>Services</h4>
+<ul>
+<li>Startup Mentorship</li>
+<li>Funding Support</li>
+<li>AI Matchmaking</li>
+</ul>
+</div>
+
+<div class="footer-col">
+<h4>Resources</h4>
+<ul>
+<li>Startup India</li>
+<li>Incubators</li>
+<li>Learning Modules</li>
+</ul>
+</div>
+
+<div class="footer-col">
+<h4>Contact</h4>
+<ul>
+<li>support@bsvda.in</li>
+<li>New Delhi</li>
+</ul>
+</div>
+
+</div>
+
+<div class="copyright">
+© 2026 Startup India Portal – BSVDA
+</div>
+
+</footer>
+
+</body>
+</html>

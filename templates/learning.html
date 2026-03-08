@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning Dashboard | BSVDA</title>
+
+<style>
+
+/* BASE */
+
+body{
+font-family:'Poppins',Arial,sans-serif;
+margin:0;
+background:#f9fafb;
+color:#263238;
+}
+
+/* NAVBAR */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 8%;
+background:#fff;
+box-shadow:0 2px 12px rgba(0,0,0,0.08);
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo-wrapper{
+display:flex;
+align-items:center;
+gap:12px;
+text-decoration:none;
+}
+
+.bsvda-logo-svg{
+height:50px;
+}
+
+.logo-text-group{
+display:flex;
+flex-direction:column;
+}
+
+.brand-name{
+font-size:1.4rem;
+font-weight:800;
+color:#0369A1;
+}
+
+.brand-sub{
+font-size:0.75rem;
+color:#FF9933;
+font-weight:600;
+}
+
+.nav-links{
+list-style:none;
+display:flex;
+gap:25px;
+align-items:center;
+margin:0;
+}
+
+.nav-links a{
+text-decoration:none;
+font-weight:600;
+color:#263238;
+padding:8px 10px;
+transition:all 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+color:#0369A1;
+background:rgba(3,105,161,0.1);
+border-radius:6px;
+}
+
+/* HERO */
+
+.hero{
+background:linear-gradient(120deg,#e3f2fd,#f0faff);
+text-align:center;
+padding:80px 8% 60px;
+border-radius:12px;
+margin:40px 8%;
+}
+
+.hero h1{
+font-size:2.6rem;
+color:#0369A1;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:1.05rem;
+color:#607d8b;
+max-width:720px;
+margin:auto;
+line-height:1.7;
+}
+
+/* SECTION TITLE */
+
+.section-title{
+text-align:center;
+font-size:2.2rem;
+font-weight:700;
+color:#0369A1;
+margin-top:20px;
+margin-bottom:40px;
+}
+
+/* COURSES GRID */
+
+.courses-container{
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:30px;
+padding:0 8%;
+}
+
+/* COURSE CARD */
+
+.course-card{
+background:#fff;
+border-radius:14px;
+padding:30px;
+box-shadow:0 15px 30px rgba(0,0,0,0.08);
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+transition:all 0.3s ease;
+}
+
+.course-card:hover{
+transform:translateY(-6px);
+box-shadow:0 25px 50px rgba(0,0,0,0.12);
+}
+
+.course-card h2{
+color:#0369A1;
+font-size:1.5rem;
+margin-bottom:12px;
+}
+
+.course-card p{
+color:#455a64;
+font-size:0.96rem;
+line-height:1.65;
+margin-bottom:20px;
+}
+
+/* MODULE INFO */
+
+.module-info{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+margin-bottom:20px;
+}
+
+.module-badge{
+background:#e3f2fd;
+color:#0369A1;
+font-size:0.8rem;
+padding:6px 10px;
+border-radius:6px;
+font-weight:600;
+}
+
+/* START BUTTON */
+
+.start-btn{
+padding:12px 22px;
+border-radius:8px;
+background:#0369A1;
+color:#fff;
+font-weight:600;
+text-align:center;
+display:inline-block;
+transition:all 0.3s ease;
+}
+
+.start-btn:hover{
+background:#0288d1;
+transform:translateY(-2px);
+}
+
+/* FOOTER */
+
+footer{
+background:#e0f2f1;
+padding:60px 8% 40px;
+margin-top:70px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:2fr 1fr 1fr 1fr;
+gap:40px;
+}
+
+.footer-col h4{
+color:#0369A1;
+margin-bottom:15px;
+}
+
+.footer-col ul{
+list-style:none;
+padding:0;
+margin:0;
+}
+
+.footer-col li{
+margin-bottom:10px;
+font-size:0.95rem;
+color:#455a64;
+}
+
+.copyright{
+text-align:center;
+margin-top:50px;
+padding-top:20px;
+border-top:1px solid rgba(0,0,0,0.1);
+color:#607d8b;
+font-size:0.85rem;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.courses-container{
+grid-template-columns:1fr;
+}
+
+.hero{
+margin:40px 5%;
+padding:60px 5%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<a href="/" class="logo-wrapper">
+
+<svg class="bsvda-logo-svg" viewBox="0 0 200 200">
+<circle cx="100" cy="100" r="90" fill="#f0faff"/>
+<circle cx="100" cy="100" r="80" fill="none" stroke="#0369A1" stroke-width="2"/>
+<path d="M100 40 L125 110 L100 95 L75 110 Z" fill="#0369A1"/>
+<path d="M100 95 L120 140 L100 130 L80 140 Z" fill="#FF9933"/>
+</svg>
+
+<div class="logo-text-group">
+<div class="brand-name">BSVDA</div>
+<div class="brand-sub">Startup India Portal</div>
+</div>
+
+</a>
+
+<ul class="nav-links">
+<li><a href="/">Home</a></li>
+<li><a href="/entrepreneurs">Entrepreneurs</a></li>
+<li><a href="/funding">Funding</a></li>
+<li><a href="/schemes">Schemes</a></li>
+<li><a href="/learning" class="active">Learning</a></li>
+<li><a href="/login">Login</a></li>
+<li><a href="/ai-match">+ AI Match</a></li>
+</ul>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<h1>Upskill Your Startup Knowledge</h1>
+
+<p>
+Explore structured startup learning modules covering entrepreneurship,
+funding strategies, marketing, product management, finance and legal
+foundations. Each module includes learning content and knowledge tests.
+</p>
+
+</section>
+
+<h2 class="section-title">Startup Learning Modules</h2>
+
+<section class="courses-container">
+
+{% for course in courses %}
+
+<div class="course-card">
+
+<h2>{{ course.title }}</h2>
+
+<p>{{ course.theory[:350] }}...</p>
+
+<div class="module-info">
+<span class="module-badge">Level: Beginner</span>
+<span class="module-badge">MCQ Assessment</span>
+<span class="module-badge">Startup Skill</span>
+</div>
+
+<a href="/learning/{{ course.id }}" class="start-btn">Start Module</a>
+
+</div>
+
+{% endfor %}
+
+</section>
+
+<footer>
+
+<div class="footer-grid">
+
+<div class="footer-col">
+<h4>BSVDA</h4>
+<p>Academic Startup India initiative supporting innovation and entrepreneurship.</p>
+</div>
+
+<div class="footer-col">
+<h4>Services</h4>
+<ul>
+<li>Startup Mentorship</li>
+<li>Funding Support</li>
+<li>AI Matchmaking</li>
+</ul>
+</div>
+
+<div class="footer-col">
+<h4>Resources</h4>
+<ul>
+<li>Startup India</li>
+<li>Incubators</li>
+<li>Learning Modules</li>
+</ul>
+</div>
+
+<div class="footer-col">
+<h4>Contact</h4>
+<ul>
+<li>support@bsvda.in</li>
+<li>New Delhi</li>
+</ul>
+</div>
+
+</div>
+
+<div class="copyright">
+© 2026 Startup India Portal – BSVDA
+</div>
+
+</footer>
+
+</body>
+</html>

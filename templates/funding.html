@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Funding Opportunities | BSVDA</title>
+<style>
+body{margin:0;font-family:Poppins,Arial,sans-serif;background:#fdfdfd;color:#263238;}
+h1,h2,h3{color:#0369A1;margin:0 0 10px 0;}
+p{color:#607d8b;line-height:1.6;margin:0 0 10px 0;}
+a{text-decoration:none;}
+.btn{padding:10px 20px;border-radius:6px;background:#0369A1;color:white;font-weight:600;cursor:pointer;border:none;}
+.btn:hover{background:#0288d1}
+
+/* NAVBAR */
+nav{display:flex;justify-content:space-between;align-items:center;padding:12px 8%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.05);position:sticky;top:0;z-index:1000;}
+.logo-wrapper{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.bsvda-logo-svg{height:55px;}
+.logo-text-group{display:flex;flex-direction:column;}
+.brand-name{font-size:1.5rem;font-weight:800;color:#0369A1;}
+.brand-sub{font-size:0.75rem;color:#FF9933;font-weight:600;}
+nav ul{list-style:none;display:flex;gap:20px;margin:0;padding:0;}
+nav ul li a{color:#263238;font-weight:600;}
+
+/* HEADER */
+.header-section{background:linear-gradient(120deg,#e3f2fd,#f0faff);padding:60px 8%;text-align:center;border-radius:16px;margin-bottom:40px;}
+.header-divider{width:80px;height:4px;background:#0369A1;margin:15px auto;}
+
+/* Success Message */
+.success-message{background:#d4edda;color:#155724;padding:14px;border-radius:8px;margin:20px auto;max-width:800px;text-align:center;font-weight:600;}
+
+/* FUNDING CARDS */
+.section{padding:60px 8%}
+.center{text-align:center}
+.funding-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;margin-top:30px;}
+.card{background:white;border-radius:16px;padding:25px;box-shadow:0 12px 30px rgba(0,0,0,0.12);transition:0.3s;}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,0.15);}
+.card .sector{font-weight:600;color:#455a64;}
+.card .details{font-size:0.95rem;color:#455a64;}
+.card .highlight{font-weight:700;color:#FF9933;}
+
+/* MODAL */
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);justify-content:center;align-items:center;}
+.modal-content{background:white;border-radius:12px;padding:30px;width:90%;max-width:500px;position:relative;}
+.close-modal{position:absolute;top:15px;right:20px;font-size:1.5rem;cursor:pointer;}
+
+/* FOOTER */
+footer{background:#e0f2f1;padding:50px 8%;margin-top:50px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;}
+.footer-col h4{color:#0369A1}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+<a href="/" class="logo-wrapper">
+  <svg class="bsvda-logo-svg" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="90" fill="#f0faff"/>
+    <circle cx="100" cy="100" r="80" fill="none" stroke="#0369A1" stroke-width="2"/>
+    <path d="M100 40 L125 110 L100 95 L75 110 Z" fill="#0369A1"/>
+    <path d="M100 95 L120 140 L100 130 L80 140 Z" fill="#FF9933"/>
+  </svg>
+  <div class="logo-text-group">
+    <div class="brand-name">BSVDA</div>
+    <div class="brand-sub">Startup India Portal</div>
+  </div>
+</a>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/entrepreneurs">Entrepreneurs</a></li>
+<li><a href="/funding">Funding</a></li>
+<li><a href="/schemes">Schemes</a></li>
+<li><a href="/learning">Learning</a></li>
+<li><a href="/login">Login</a></li>
+<li><a href="/ai-match">AI Match</a></li>
+</ul>
+</nav>
+
+{% if message %}
+<div class="success-message">{{ message }}</div>
+{% endif %}
+
+<!-- HEADER -->
+<section class="header-section">
+<h1>Funding Opportunities for Startups</h1>
+<div class="header-divider"></div>
+<p>Explore various funding programs to grow your startup. Click "Apply Now" to submit applications directly.</p>
+</section>
+
+<!-- FUNDING CARDS -->
+<section class="section">
+<h2 class="center">Funding Programs</h2>
+<div class="funding-cards">
+{% for fund in featured_funding %}
+<div class="card">
+    <h3>{{ fund.title }}</h3>
+    <p class="sector"><strong>Sector:</strong> {{ fund.sector }}</p>
+    <p class="details">{{ fund.description }}</p>
+    <p class="highlight">Funding Amount: ₹{{ fund.amount }} Lakhs</p>
+    <button class="btn apply-btn" data-title="{{ fund.title }}">Apply Now</button>
+</div>
+{% endfor %}
+</div>
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="apply-modal">
+<div class="modal-content">
+<span class="close-modal" id="close-modal">×</span>
+<h3 id="modal-title">Apply for Funding</h3>
+<form method="POST" action="/submit-application">
+<input type="hidden" name="funding_title" id="funding_title">
+<input type="text" name="name" placeholder="Your Name" required style="width:100%;padding:8px;margin:8px 0;border:1px solid #ccc">
+<input type="email" name="email" placeholder="Email" required style="width:100%;padding:8px;margin:8px 0;border:1px solid #ccc">
+<input type="text" name="startup" placeholder="Startup Name" required style="width:100%;padding:8px;margin:8px 0;border:1px solid #ccc">
+<textarea name="description" placeholder="Brief About Startup" required style="width:100%;padding:8px;margin:8px 0;border:1px solid #ccc"></textarea>
+<button type="submit" class="btn" style="width:100%">Submit Application</button>
+</form>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+<div class="footer-grid">
+<div class="footer-col"><h4>BSVDA</h4><p>Academic Startup India initiative supporting innovation and entrepreneurship.</p></div>
+<div class="footer-col"><h4>Services</h4><ul><li>Startup Mentorship</li><li>Funding Support</li><li>AI Matchmaking</li></ul></div>
+<div class="footer-col"><h4>Resources</h4><ul><li>Startup India</li><li>Incubators</li><li>Learning Modules</li></ul></div>
+<div class="footer-col"><h4>Contact</h4><ul><li>support@bsvda.in</li><li>New Delhi</li></ul></div>
+</div>
+</footer>
+
+<script>
+const applyBtns=document.querySelectorAll(".apply-btn");
+const modal=document.getElementById("apply-modal");
+const closeModal=document.getElementById("close-modal");
+const modalTitle=document.getElementById("modal-title");
+const fundingInput=document.getElementById("funding_title");
+
+applyBtns.forEach(btn=>{
+    btn.addEventListener("click",()=>{
+        modalTitle.textContent="Apply for: "+btn.dataset.title;
+        fundingInput.value=btn.dataset.title;
+        modal.style.display="flex";
+    });
+});
+
+closeModal.onclick=()=>modal.style.display="none";
+window.onclick=(e)=>{if(e.target==modal) modal.style.display="none";}
+</script>
+
+</body>
+</html>
